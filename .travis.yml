@@ -3,7 +3,8 @@ node_js:
   - "6"
 git:
   depth: 3
-script: scripts/set-firebase-env.sh
+script: "echo 'no build needed at this time'"
+before_deploy: scripts/set-firebase-env.sh
 deploy:
   - provider: firebase
     token: $FIREBASE_TOKEN
