@@ -31,9 +31,9 @@ app.post('/events', (req, res) => {
 
 app.post('/welkomstbericht', (req, res) => {
   if (req.body.token === functions.config().slack.tokens.verification) {
-    welcomeMessage.get(req.body.user_id, req.body.text === 'nogeenkeer', function(message){
-      res.status(200).send(message);
-    });
+    //return initial response as fast as possible.
+    res.status(200).send(welcomeMessage.handlingMessage);
+    welcomeMessage.get(req.body.user_id, req.body.text === 'nogeenkeer', req.body.response_url);
   } else { res.sendStatus(500); }
 });
 

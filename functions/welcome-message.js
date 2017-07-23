@@ -1,5 +1,15 @@
 const functions = require('firebase-functions');  
+const qs = require('querystring');
+const axios = require('axios');
 const db = require('./firebase-database').db;
+
+const postResult = result => console.log(result.data);
+
+const handlingMessage = {
+  as_user: true,
+  link_names: true,
+  text: "Dank, moment, ik kom zo bij u terug."
+}
 
 const message = {
   as_user: true,
@@ -65,17 +75,20 @@ const alreadyWelcomed = {
   "text": "U heeft het welkomstbericht al een keer gezien, maar mocht u het nogmaals willen zien, typ dan `/welkomstbericht nogeenkeer`."
 };
 
-const get = (userId, override, cb) => {
+const get = (userId, override, responseUrl) => {
   const ref = db.ref(`users/${userId}`);
   ref.once("value", function(snapshot) {
     let data = snapshot.val();
+    let messageToSend = {};
     if (!data || !data.welcomed || override) {
       ref.child('welcomed').set(true);
-      cb(message);
+      messageToSend = message;
     } else {
-      cb(alreadyWelcomed);
+      messageToSend = alreadyWelcomed;
     }
+    const sendMessage = axios.post(responseUrl, messageToSend);
+    sendMessage.then(postResult);
   });
 };
 
-module.exports = { get };
+module.exports = { get, handlingMessage };
