@@ -8,10 +8,11 @@ branches:
     - master
 before_install: cd functions
 before_script:
+  - cd $TRAVIS_BUILD_DIR
   - npm install -g firebase-tools
 script: 
   - scripts/set-firebase-env.sh
-  - firebase --token $FIREBASE_TOKEN deploy
+  - firebase deploy --token=$FIREBASE_TOKEN --non-interactive
 cache:
   directories:
     - $(npm config get prefix)/bin/firebase-tools

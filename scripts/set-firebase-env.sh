@@ -19,4 +19,4 @@ eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN="  \
   channels.ids.sicily="$SICILY_CHANNEL_ID"  \
   channels.ids.getting_ready="$GETTING_READY_CHANNEL_ID"  \
   channels.ids.masters_of_cermony="$MASTERS_OF_CEREMONY_CHANNEL_ID"  \
-  tags.instagram="$INSTAGRAM_TAG"
+  tags.instagram="$INSTAGRAM_TAG" --non-interactive
