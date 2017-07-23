@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "6"
+git:
+  depth: 3
+script: scripts/set-firebase-env.sh
+deploy:
+  - provider: firebase
+    token: $FIREBASE_TOKEN
+    on:
+      branch: master
