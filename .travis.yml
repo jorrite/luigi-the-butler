@@ -3,10 +3,14 @@ node_js:
   - "6"
 git:
   depth: 3
-script: "echo 'no build needed at this time'"
-before_deploy: scripts/set-firebase-env.sh
+before_script:
+  - npm install -g firebase-tools
+script: scripts/set-firebase-env.sh
 deploy:
   - provider: firebase
     token: $FIREBASE_TOKEN
     on:
       branch: master
+cache:
+  directories:
+    - $(npm config get prefix)/bin/firebase-tools

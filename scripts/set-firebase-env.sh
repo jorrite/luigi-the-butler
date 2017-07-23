@@ -1,10 +1,13 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+FBCMD=firebase
 if [ -f $DIR/../.env ]; then
     source $DIR/../.env
+else
+  FBCMD="firebase --token $FIREBASE_TOKEN"
 fi
 
-firebase functions:config:set slack.tokens.app="$SLACK_TOKEN="  \
+eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN="  \
   slack.tokens.verification="$SLACK_VERIFICATION_TOKEN"  \
   people.names.bride="$BRIDE"  \
   people.names.groom="$GROOM"  \
