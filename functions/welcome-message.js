@@ -85,7 +85,7 @@ const get = (commandKey, command) => {
       messageToSend = alreadyWelcomed;
     }
     db.ref().child('slash-commands').child(commandKey).set(null);
-    return axios.post(command.response_url, messageToSend);
+    return axios.post(command.response_url, messageToSend).then(() => console.log('Completed welkomstbericht command'));;
   });
 };
 
