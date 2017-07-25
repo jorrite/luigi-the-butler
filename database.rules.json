@@ -1,6 +1,14 @@
 {
   "rules": {
-    ".read": "false",
-    ".write": "false"
+    "_secrets": {
+      ".read": false,
+      ".write": false
+    },
+    "slash-commands":{
+      "$id": {
+        ".write": "(!data.exists() && newData.child('token').val() == root.child('_secrets').child('slack_verification_token').val())"
+      }
+    }
   }
 }
+

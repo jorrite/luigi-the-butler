@@ -1,23 +1,11 @@
 const functions = require('firebase-functions');
 const onboard = require('./onboard');
-// const welcomeMessage = require('./welcome-message');
+const welcomeMessage = require('./welcome-message');
 
-// app.post('/welkomstbericht', (req, res) => {
-//   if (req.body.token === functions.config().slack.tokens.verification) {
-//     //return initial response as fast as possible.
-//     res.status(200).send(welcomeMessage.handlingMessage);
-//     welcomeMessage.get(req.body.user_id, req.body.text === 'nogeenkeer', req.body.response_url);
-//   } else { res.sendStatus(500); }
-// });
-
-// app.use((req, res) =>{
-//   res.redirect("/");
-// });
-// exports.slack = functions.https.onRequest(app);
+const db = require('./firebase-database').db;
 
 exports.events = functions.https.onRequest((req, res) => {
   if(req.method != "POST") res.status(403).send('Forbidden');
-  
   switch (req.body.type) {
     case 'url_verification': {
       res.send({ challenge: req.body.challenge });
@@ -35,4 +23,17 @@ exports.events = functions.https.onRequest((req, res) => {
     }
     default: { res.sendStatus(500); }
   }
+});
+
+exports.slashCommands = functions.database.ref('/slash-commands/{pushId}/').onCreate(event => {
+  const original = event.data.val();
+
+  switch(original.command){
+    case "/welkomstbericht":
+      return welcomeMessage.get(event.data.key, original);
+      break;
+    default:
+      break;
+  }
+
 });

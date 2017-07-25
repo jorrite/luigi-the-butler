@@ -3,8 +3,6 @@ const qs = require('querystring');
 const axios = require('axios');
 const db = require('./firebase-database').db;
 
-const postResult = result => console.log(result.data);
-
 const handlingMessage = {
   as_user: true,
   link_names: true,
@@ -75,19 +73,18 @@ const alreadyWelcomed = {
   "text": "U heeft het welkomstbericht al een keer gezien, maar mocht u het nogmaals willen zien, typ dan `/welkomstbericht nogeenkeer`."
 };
 
-const get = (userId, override, responseUrl) => {
-  const ref = db.ref(`users/${userId}`);
-  ref.once("value", function(snapshot) {
+const get = (commandKey, command) => {
+  return db.ref(`users/${command.user_id}`).once('value').then(function(snapshot){
     let data = snapshot.val();
     let messageToSend = {};
-    if (!data || !data.welcomed || override) {
+    if (!data || !data.welcomed || command.text === 'nogeenkeer') {
       ref.child('welcomed').set(true);
       messageToSend = message;
     } else {
       messageToSend = alreadyWelcomed;
     }
-    const sendMessage = axios.post(responseUrl, messageToSend);
-    sendMessage.then(postResult);
+    db.ref.child('slash-commands').child(commandKey).set(null);
+    return axios.post(command.response_url, messageToSend);
   });
 };
 
