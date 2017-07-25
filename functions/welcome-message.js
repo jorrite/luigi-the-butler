@@ -83,4 +83,4 @@ const get = (commandKey, command) => {
   });
 };
 
-module.exports = { get, handlingMessage };
+module.exports = { get };
