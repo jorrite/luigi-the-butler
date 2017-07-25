@@ -21,4 +21,4 @@ eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN="  \
   channels.ids.masters_of_cermony="$MASTERS_OF_CEREMONY_CHANNEL_ID"  \
   tags.instagram="$INSTAGRAM_TAG" --non-interactive
 
-eval $FBCMD firebase database:set /_secrets/slack_verification_token $SLACK_VERIFICATION_TOKEN -y
+eval $FBCMD database:set /_secrets/slack_verification_token $SLACK_VERIFICATION_TOKEN -y
