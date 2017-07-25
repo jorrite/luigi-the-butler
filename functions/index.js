@@ -1,8 +1,7 @@
 const functions = require('firebase-functions');
+
 const onboard = require('./onboard');
 const welcomeMessage = require('./welcome-message');
-
-const db = require('./firebase-database').db;
 
 exports.events = functions.https.onRequest((req, res) => {
   if(req.method != "POST") res.status(403).send('Forbidden');
