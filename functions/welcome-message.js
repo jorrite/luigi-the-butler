@@ -83,7 +83,7 @@ const get = (commandKey, command) => {
     } else {
       messageToSend = alreadyWelcomed;
     }
-    db.ref.child('slash-commands').child(commandKey).set(null);
+    db.ref().child('slash-commands').child(commandKey).set(null);
     return axios.post(command.response_url, messageToSend);
   });
 };
