@@ -74,7 +74,8 @@ const alreadyWelcomed = {
 };
 
 const get = (commandKey, command) => {
-  return db.ref(`users/${command.user_id}`).once('value').then(function(snapshot){
+  let ref = db.ref(`users/${command.user_id}`);
+  return ref.once('value').then(function(snapshot){
     let data = snapshot.val();
     let messageToSend = {};
     if (!data || !data.welcomed || command.text === 'nogeenkeer') {
