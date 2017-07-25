@@ -3,12 +3,6 @@ const qs = require('querystring');
 const axios = require('axios');
 const db = require('./firebase-database').db;
 
-const handlingMessage = {
-  as_user: true,
-  link_names: true,
-  text: "Dank, moment, ik kom zo bij u terug."
-}
-
 const message = {
   as_user: true,
   link_names: true,
