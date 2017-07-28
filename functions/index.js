@@ -4,7 +4,7 @@ const onboard = require('./onboard');
 const welcomeMessage = require('./welcome-message');
 
 exports.events = functions.https.onRequest((req, res) => {
-  if(req.method != "POST") res.status(403).send('Forbidden');
+  if(req.method != "POST") return res.status(403).send('Forbidden');
   switch (req.body.type) {
     case 'url_verification': {
       res.send({ challenge: req.body.challenge });
