@@ -7,7 +7,7 @@ else
   FBCMD="firebase --token $FIREBASE_TOKEN"
 fi
 
-eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN="  \
+eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN"  \
   slack.tokens.verification="$SLACK_VERIFICATION_TOKEN"  \
   people.names.bride="$BRIDE"  \
   people.names.groom="$GROOM"  \
