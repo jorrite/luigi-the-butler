@@ -41,25 +41,21 @@ const getText = (name) => {
   return hello[Math.floor(Math.random() * hello.length)] + ' ' + name + '!';
 }
 
-const initialMessage = (userId) => {
-  const getUserInfo = axios.post('https://slack.com/api/users.info', qs.stringify({token: functions.config().slack.tokens.app, user: userId}));
-  getUserInfo.then((result) => {
-
-    const ref = db.ref(`users/${userId}`);
-    ref.once("value", function(snapshot) {
-      let data = snapshot.val();
-      if (!data || !data.onboarded) {
-        message.channel = 'algemeen';
-        message.text = getText(result.data.user.profile.first_name);
-        ref.child('slack_profile').set(result.data.user.profile);
-        ref.child('onboarded').set(true);
-        const params = qs.stringify(message);
-        const sendMessage = axios.post('https://slack.com/api/chat.postMessage', params);
-        sendMessage.then(postResult);
-      } else {
-        console.log('Already onboarded');
-      }
-    });
+const initialMessage = (user) => {
+  const ref = db.ref(`users/${user.id}`);
+  ref.once("value", function(snapshot) {
+    let data = snapshot.val();
+    if (!data || !data.onboarded) {
+      message.channel = 'algemeen';
+      message.text = getText(user.profile.first_name);
+      ref.child('slack_profile').set(user.profile);
+      ref.child('onboarded').set(true);
+      const params = qs.stringify(message);
+      const sendMessage = axios.post('https://slack.com/api/chat.postMessage', params);
+      sendMessage.then(postResult);
+    } else {
+      console.log('Already onboarded');
+    }
   });
 };
 module.exports = { initialMessage };
