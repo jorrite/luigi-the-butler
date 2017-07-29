@@ -54,7 +54,7 @@ const send = (commandKey, command) => {
       let emailData = {
         from: functions.config().mailgun.config.name_from + " <" + functions.config().mailgun.config.email_from + ">",
         to: args[1] + " <" + args[0] + ">",
-        subject: "Huwelijksweekend Sicili&euml;",
+        subject: "Huwelijksweekend",
         html: email
       };
       mailgun.messages().send(emailData, function(err, body){
