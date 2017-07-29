@@ -9,10 +9,15 @@ fi
 
 eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN"  \
   slack.tokens.verification="$SLACK_VERIFICATION_TOKEN"  \
+  mailgun.config.api_key="$MG_API_KEY"  \
+  mailgun.config.domain="$MG_DOMAIN"  \
+  mailgun.config.email_from="$MG_EMAIL_FROM"  \
+  mailgun.config.name_from="$MG_NAME_FROM"  \
   people.names.bride="$BRIDE"  \
   people.names.groom="$GROOM"  \
   people.names.ceremony_master_1="$MASTERS_OF_CEREMONY_1"  \
   people.names.ceremony_master_2="$MASTERS_OF_CEREMONY_2"  \
+  people.ids.admin_1="$ADMIN_1_ID"  \
   channels.ids.general="$GENERAL_CHANNEL_ID"   \
   channels.ids.tickets="$TICKETS_CHANNEL_ID"  \
   channels.ids.accomodation="$ACCOMODATION_CHANNEL_ID"  \

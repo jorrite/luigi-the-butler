@@ -1,7 +1,8 @@
 const functions = require('firebase-functions');
 
-const onboard = require('./onboard');
-const welcomeMessage = require('./welcome-message');
+const onboard = require('./events/onboard');
+const welcomeMessage = require('./slash-commands/welcome-message');
+const welcomeEmail = require('./slash-commands/welcome-email');
 
 exports.events = functions.https.onRequest((req, res) => {
   if(req.method != "POST") return res.status(403).send('Forbidden');
@@ -30,6 +31,9 @@ exports.slashCommands = functions.database.ref('/slash-commands/{pushId}/').onCr
   switch(original.command){
     case "/welkomstbericht":
       return welcomeMessage.get(event.data.key, original);
+      break;
+    case "/stuurwelkomstemail":
+      return welcomeEmail.send(event.data.key, original);
       break;
     default:
       break;

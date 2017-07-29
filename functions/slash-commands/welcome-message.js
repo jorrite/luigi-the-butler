@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');  
 const qs = require('querystring');
 const axios = require('axios');
-const db = require('./firebase-database').db;
+const db = require('../firebase-database').db;
 
 const message = {
   as_user: true,
