@@ -59,7 +59,9 @@ const send = (commandKey, command) => {
       };
       mailgun.messages().send(emailData, function(err, body){
         messageToSend = sentMessage;
-        if(err) messageToSend = errorMessage;
+        if(err){
+          messageToSend = errorMessage;
+        }
         db.ref().child('slash-commands').child(commandKey).set(null);
         return axios.post(command.response_url, messageToSend).then(() => console.log('Completed stuurwelkomstemail command'));
       });
