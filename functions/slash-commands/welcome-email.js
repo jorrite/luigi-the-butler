@@ -52,7 +52,7 @@ const send = (commandKey, command) => {
       email = email.replace("{{names}}", functions.config().people.names.groom+" &amp; "+functions.config().people.names.bride);
       email = email.replace("{{instagramtag}}", functions.config().tags.instagram);
       let emailData = {
-        from: functions.config().mailgun.config.name_from.split('-').join(' '); + " <" + functions.config().mailgun.config.email_from + ">",
+        from: functions.config().mailgun.config.name_from.split('-').join(' ') + " <" + functions.config().mailgun.config.email_from + ">",
         to: args[1] + " <" + args[0] + ">",
         subject: "Huwelijksweekend",
         html: email
