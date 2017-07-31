@@ -6,6 +6,7 @@ const welcomeEmail = require('./slash-commands/welcome-email');
 
 exports.events = functions.https.onRequest((req, res) => {
   if(req.method != "POST") return res.status(403).send('Forbidden');
+  console.log(req.body); //logging for Cloud Function
   switch (req.body.type) {
     case 'url_verification': {
       res.send({ challenge: req.body.challenge });
