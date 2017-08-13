@@ -18,7 +18,7 @@ const hello = [
 ];
 
 const dresscodeKeywords = ['dresscode', 'kleding'];
-const dresscodeMessage = "De dresscode voor de bruiloft is 'summer chic' oftewel zomers chique in pastel-kleuren. Voor inspiratie: <"+functions.config().links.men_dresscode+"|dresscode voor mannen> en <"+functions.config().links.women_dresscode+"|dresscode voor vrouwen>. De hoofdkleur van de bruiloft is pastelblauw, net als het thema op de door uw ontvangen uitnodiging."
+const dresscodeMessage = "De dresscode voor de bruiloft is 'summer chic' oftewel zomers chique in pastel-kleuren. Voor inspiratie: <"+functions.config().links.men_dresscode+"|dresscode voor mannen> en <"+functions.config().links.women_dresscode+"|dresscode voor vrouwen>. De hoofdkleur van de bruiloft is pastelblauw, net als het thema op de door u ontvangen uitnodiging."
 
 const respondTo = (event) => {
   
