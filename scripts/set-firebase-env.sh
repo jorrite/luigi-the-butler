@@ -18,12 +18,15 @@ eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN"  \
   people.names.ceremony_master_1="$MASTERS_OF_CEREMONY_1"  \
   people.names.ceremony_master_2="$MASTERS_OF_CEREMONY_2"  \
   people.ids.admin_1="$ADMIN_1_ID"  \
+  people.ids.app="$APP_ID"  \
   channels.ids.general="$GENERAL_CHANNEL_ID"   \
   channels.ids.tickets="$TICKETS_CHANNEL_ID"  \
   channels.ids.accomodation="$ACCOMODATION_CHANNEL_ID"  \
   channels.ids.sicily="$SICILY_CHANNEL_ID"  \
   channels.ids.getting_ready="$GETTING_READY_CHANNEL_ID"  \
   channels.ids.masters_of_cermony="$MASTERS_OF_CEREMONY_CHANNEL_ID"  \
-  tags.instagram="$INSTAGRAM_TAG" --non-interactive
+  tags.instagram="$INSTAGRAM_TAG" \
+  links.men_dresscode="$DRESSCODE_MEN_LINK" \
+  links.women_dresscode="$DRESSCODE_WOMEN_LINK" --non-interactive
 
 eval $FBCMD database:set /_secrets/slack_verification_token -d '\"$SLACK_VERIFICATION_TOKEN\"' -y
