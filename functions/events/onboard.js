@@ -37,8 +37,8 @@ const message = {
   }])
 };
 
-const getText = (name) => {
-  return hello[Math.floor(Math.random() * hello.length)] + ' ' + name + '!';
+const getText = (userId) => {
+  return hello[Math.floor(Math.random() * hello.length)] + " <@" + userId + ">!";
 }
 
 const initialMessage = (user) => {
@@ -47,7 +47,7 @@ const initialMessage = (user) => {
     let data = snapshot.val();
     if (!data || !data.onboarded) {
       message.channel = 'algemeen';
-      message.text = getText(user.profile.first_name);
+      message.text = getText(user.id);
       ref.child('slack_profile').set(user.profile);
       ref.child('onboarded').set(true);
       const params = qs.stringify(message);
