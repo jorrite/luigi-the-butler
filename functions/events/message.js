@@ -20,7 +20,7 @@ const hello = [
 const dresscodeKeywords = ['dresscode', 'kleding'];
 const dresscodeMessage = "De dresscode voor de bruiloft is 'summer chic' oftewel zomers chique in pastel-kleuren. Voor inspiratie: <"+functions.config().links.men_dresscode+"|dresscode voor mannen> en <"+functions.config().links.women_dresscode+"|dresscode voor vrouwen>. De hoofdkleur van de bruiloft is pastelblauw, net als het thema op de door u ontvangen uitnodiging."
 
-const programKeywords = ['programma'];
+const programKeywords = ['programma', 'huwelijksweekend'];
 const programMessage = "Maar natuurlijk!\n\n<@channel>, waarde gasten, het is mij een genoegen u het programma van het huwelijksweekend te presenteren. U kunt deze bekijken door <"+functions.config().links.program+"|hier op te klikken>. De festiviteiten beginnen op zaterdag 19 mei, tot dan!";
 const respondTo = (event) => {
   
@@ -38,9 +38,10 @@ const respondTo = (event) => {
     sendMessage = true;
   }
 
-  if (programKeywords.some(function(v) { return event.text.replace(/ /g,'').toLowerCase().indexOf(v) >= 0; })) {
+  if (programKeywords.every(function(v) { return event.text.replace(/ /g,'').toLowerCase().indexOf(v) >= 0; })) {
     if(event.user == functions.config().people.ids.admin_1){
       message.text += programMessage;
+      sendMessage = true;
     }
   }
 
