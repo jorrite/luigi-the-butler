@@ -27,6 +27,7 @@ eval $FBCMD functions:config:set slack.tokens.app="$SLACK_TOKEN"  \
   channels.ids.masters_of_cermony="$MASTERS_OF_CEREMONY_CHANNEL_ID"  \
   tags.instagram="$INSTAGRAM_TAG" \
   links.men_dresscode="$DRESSCODE_MEN_LINK" \
-  links.women_dresscode="$DRESSCODE_WOMEN_LINK" --non-interactive
+  links.women_dresscode="$DRESSCODE_WOMEN_LINK" \
+  links.program="$PROGRAM_LINK" --non-interactive
 
 eval $FBCMD database:set /_secrets/slack_verification_token -d '\"$SLACK_VERIFICATION_TOKEN\"' -y
